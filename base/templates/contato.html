@@ -1,70 +1,17 @@
-<!doctype html>
-<html lang="pt-br">
-  <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">   
-    <title>Pet Online - Reserve já o banho do seu pet</title>
-
-    <link rel="stylesheet" href="/static/bootstrap.min.css">
-    <style>
-      .bd-placeholder-img {
-        font-size: 1.125rem;
-        text-anchor: middle;
-        -webkit-user-select: none;
-        -moz-user-select: none;
-        user-select: none;
-      }
-      @media (min-width: 768px) {
-        .bd-placeholder-img-lg {
-          font-size: 3.5rem;
-        }
-      }
-    </style>
-
-    
-    <!-- Custom styles for this template -->
-    <link href="/static/starter-template.css" rel="stylesheet">
-  </head>
-  <body>
-    
-<div class="col-lg-8 mx-auto p-4 py-md-5">
-  <header class="d-flex align-items-center pb-3 mb-5 border-bottom">
-    <a href="/" class="d-flex align-items-center text-dark text-decoration-none">
-        <span class="fs-4">Petshop - Online</span>
-    </a>
-  </header>
-
-  <main>
-    <h1>Fale conosco</h1>
-    <form action="" method="post">
-        <div class="row">
-            <div class="col-md-6">
-                <div class="form-group">
-                    <label for="id_name">Nome</label>
-                    <input type="text" class="form-control" id="id_nome" name="nome">
-                </div>
-            </div>
-            <div class="col-md-6">
-                <div class="form-group">
-                    <label for="id_name">Email</label>
-                    <input type="email" class="form-control" id="id_email" name="email">
-                </div>
-            </div>
-            <div class="col-md-12">
-                <div class="form-group">
-                    <label for="id_name">Mensagem</label>
-                    <textarea name="mensagem" id="id_mensagem" cols="30" rows="10" class="form-control"></textarea>
-                </div>
-            </div>
-        </div>
-        <hr>
-        <button type="submit" class="btn btn-primary">Enviar Mensagem</button>
-    </form>
-  </main>
-  <footer class="pt-5 my-5 text-muted border-top">
-    Curso Ultima School
-  </footer>
-  </div>
-  <script src="/static/bootstrap.bundle.min.js.map"></script>   
- </body>
-</html>
+{% extends "inicio.html" %}
+{% load bootstrap5 %}
+{% block principal %}
+<h1> Fale Conosco</h1>
+<p>
+    Envie uma mensagem através do formuário abaixo ou ligue para o telefone {{telefone}} falando com o responsavel {{responsavel|upper}}
+</p>
+{% if sucesso %}
+<p class="alert alert-sucess">Mensagem enviada com sucesso!</p>
+{% endif %}
+<form action="" method="post" novalidate>
+    {% csrf_token %}
+    {% bootstrap_form form %}
+    <hr>
+    <button type="submit" class="btn btn-primary">Enviar Mensagem</button>
+</form>
+{% endblock %}
